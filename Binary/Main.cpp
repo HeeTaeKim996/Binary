@@ -32,5 +32,15 @@ int main()
 	Bin I(Res);
 	printf("Q : "); H.PrintNum();
 	printf("R : "); I.PrintNum();
+
+	Bin J;
+	J.FromHex("3E");
+	J.PrintNum();
+	J.PrintHex();
+
+	Bin K;
+	K.FromOct("37");
+	K.PrintNum();
+	K.PrintOct();
 }
 

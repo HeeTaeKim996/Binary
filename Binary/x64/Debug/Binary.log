@@ -1,2 +1,17 @@
-﻿  Main.cpp
+﻿  Bin.cpp
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(125,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(172,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(274,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(327,12): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(337,31): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(341,31): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(451,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(483,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(554,13): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(605,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(606,11): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\ttiig\source\repos\Binary\Binary\Bin.cpp(646,10): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Main.cpp
+  Test.cpp
+  Generating Code...
   Binary.vcxproj -> C:\Users\ttiig\source\repos\Binary\x64\Debug\Binary.exe

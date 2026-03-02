@@ -7,7 +7,13 @@ public:
 	Bin(string Num);
 
 public:
+	void FromHex(string Hex);
+	void FromOct(string Oct);
+
+public:
 	void PrintNum(bool IsUnsigned = false);
+	void PrintHex();
+	void PrintOct();
 
 
 public:
@@ -21,6 +27,8 @@ public:
 	static string TwosComplement(const string& Num);
 	static string OnesComplement(const string& Num);
 	static string BitExtension(const string& Num, int BitCount);
+	static void MakeSameLength(string& A, string& B);
+
 
 public:
 	static char NOT(char Val);
@@ -51,8 +59,7 @@ public:
 	static string Multiply(string Multiplicated, string Multiplier);
 	static void Divide(string Dividened, string Divisor, string& Quotient, string& Remainder);
 
-private:
-	static void MakeSameLength(string& A, string& B);
+
 
 public:
 	string Number;

@@ -46,11 +46,183 @@ Bin::Bin(string Num)
 	Number = Num;
 }
 
+void Bin::FromHex(string Hex)
+{
+	Number = "";
+	for (int i = 0; i < Hex.length(); i++)
+	{
+		char C = Hex[i];
+		int Num = 0;
+		if (C >= '0' && C <= '9')
+		{
+			Num = C - '0';
+		}
+		else if (C >= 'A' && C <= 'F')
+		{
+			Num = C - 'A' + 10;
+		}
+
+		string Nums = string(4, '0');
+		for (int j = 3; j >= 0; j--)
+		{
+			int Val = Num % 2;
+			Nums[j] = Val + '0';
+
+			Num /= 2;
+		}
+		Number += Nums;
+	}
+}
+
+void Bin::FromOct(string Oct)
+{
+	Number = "";
+	for (int i = 0; i < Oct.length(); i++)
+	{
+		char C = Oct[i];
+		int Num = 0;
+		if (C >= '0' && C <= '7')
+		{
+			Num = C - '0';
+		}
+
+		string Nums = string(3, '0');
+		for (int j = 2; j >= 0; j--)
+		{
+			int Val = Num % 2;
+			Nums[j] = Val + '0';
+
+			Num /= 2;
+		}
+		Number += Nums;
+	}
+}
+
 void Bin::PrintNum(bool IsUnsigned) // ¡Ø IsUnsinged == false
 {
 	printf("%s(%d)\n", Number.c_str(), GetDecimal(IsUnsigned));
 }
 
+
+// Prelude Unsigned
+void Bin::PrintHex()
+{
+	string Copy = Number;
+	int SurplusCount = 4 - Copy.length() % 4;
+	if (SurplusCount != 4)
+	{
+		string Added = "";
+		while (SurplusCount-- > 0)
+		{
+			Added += '0';
+		}
+		Copy = Added + Copy;
+	}
+
+
+	string PrintSt = "";
+
+	int Rep = Copy.length() / 4;
+	for (int i = 0; i < Rep; i++)
+	{
+		int Sum = 0;
+		int Mul = 8;
+		
+		for (int j = 0; j < 4; j++)
+		{
+			char C = Copy[i * 4 + j];
+			if (C == '1')
+			{
+				Sum += Mul;
+			}
+
+			Mul /= 2;
+		}
+
+		if (Sum >= 10)
+		{
+			PrintSt += Sum + - 10 + 'A';
+		}
+		else
+		{
+			PrintSt += Sum + '0';
+		}
+	}
+
+	printf("%s(Hex)", PrintSt.c_str());
+}
+
+// Prelude Unsigned
+void Bin::PrintOct()
+{
+	string Copy = Number;
+	int SurplusCount = 3 - Copy.length() % 3;
+	if (SurplusCount != 3)
+	{
+		string Added = "";
+		while (SurplusCount-- > 0)
+		{
+			Added += '0';
+		}
+		Copy = Added + Copy;
+	}
+
+	string PrintSt = "";
+
+	int Rep = Copy.length() / 3;
+	for (int i = 0; i < Rep; i++)
+	{
+		int Sum = 0;
+		int Mul = 4;
+
+		for (int j = 0; j < 3; j++)
+		{
+			char C = Copy[i * 3 + j];
+			if (C == '1')
+			{
+				Sum += Mul;
+			}
+
+			Mul /= 2;
+		}
+
+		PrintSt += Sum + '0';
+	}
+
+	printf("%s(Oct)", PrintSt.c_str());
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------
+//		  operator
+//---------------------------
 Bin& Bin::operator=(const Bin& B)
 {
 	Number = B.Number;
@@ -81,6 +253,20 @@ Bin Bin::operator*(Bin& B)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------
+//		  Utils
+//---------------------------
 int Bin::GetDecimal(bool IsUnsinged) // ¡Ø IsUnsinged == false
 {
 	int Ret = 0;
@@ -144,6 +330,17 @@ string Bin::BitExtension(const string& Num, int BitCount)
 	return Ret;
 }
 
+void Bin::MakeSameLength(string& A, string& B)
+{
+	if (A.length() > B.length())
+	{
+		B = BitExtension(B, A.length());
+	}
+	else if (A.length() < B.length())
+	{
+		A = BitExtension(A, B.length());
+	}
+}
 
 
 
@@ -167,8 +364,9 @@ string Bin::BitExtension(const string& Num, int BitCount)
 
 
 
-
-
+//---------------------------
+//		  Gate
+//---------------------------
 char Bin::NOT(char Val)
 {
 	return Val == '0' ? '1' : '0';
@@ -227,7 +425,9 @@ char Bin::NXOR(char a, char b)
 
 
 
-
+//---------------------------
+//		  Add
+//---------------------------
 void Bin::FullAdder(char A, char B, char C0, char& S, char& C)
 {
 	char XOR_AB = XOR(A, B);
@@ -328,7 +528,9 @@ string Bin::Parallel_Adder_Substractor(string First, string Second, bool IsMinus
 
 
 
-
+//---------------------------
+//		  Substract
+//---------------------------
 void Bin::FullSubstractor(char A, char B, char Br0, char& D, char& Br)
 {
 	char XOR_AB = XOR(A, B);
@@ -391,7 +593,9 @@ string Bin::Parallel_Substractor(string First, string Second)
 
 
 
-
+//---------------------------
+//		 Mul && Divide
+//---------------------------
 string Bin::Multiply(string Multiplicated, string Multiplier)
 {
 	string Lines = string(Multiplier.length() + Multiplicated.length() + 1, '0');
@@ -500,30 +704,6 @@ void Bin::Divide(string Dividened, string Divisor, string& Quotient, string& Rem
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-void Bin::MakeSameLength(string& A, string& B)
-{
-	if (A.length() > B.length())
-	{
-		B = BitExtension(B, A.length());
-	}
-	else if (A.length() < B.length())
-	{
-		A = BitExtension(A, B.length());
-	}
-}
 
 
 
